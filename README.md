@@ -20,12 +20,12 @@ Use the CLI that ships with the app (`/Applications/DeepSeek Harness.app/Content
 ## Status
 
 - Runs on DeepSeek Harness 0.2.1-rc.2, the core the desktop app ships. The host serves its RPC as exact fetch routes under `/api/btw/*`, because that core allows a single RPC interceptor on `/api` (API Gateway's) and a second one crashes the app at startup. The temp-chat overlay is registered through `slots.inject`.
-- Checked on Desktop: the app starts and `/btw` works. In a test instance, the `/` menu entry and the panel render in English.
+- Checked on Desktop: the app starts, and `/btw` answers from the current conversation using that chat's model. In a test instance, the `/` menu entry and the panel render in English.
 - Not yet verified: Chinese display, and temporary chat replies end to end.
 
 ## Requirements
 
-- A default model selected in DSH settings. Without one, `/btw` and temporary chat report "no default model configured".
+- A model: `/btw` and temporary chat use the model selected in the current chat. If the chat has none, they use the default model from DSH settings, and report "no default model configured" when there is neither.
 - The interface follows the DSH language: English and Chinese are included, any other language falls back to English.
 
 ## License
