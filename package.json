@@ -1,7 +1,7 @@
 {
   "name": "dsh-btw",
   "version": "0.0.3",
-  "description": "Side questions (/btw) and ephemeral temporary chat for DeepSeek Harness (dsh) web — ask without interrupting the main agent, dispose without traces",
+  "description": "Side questions (/btw) and ephemeral temporary chat for DeepSeek Harness (dsh) — ask without interrupting the main agent, dispose without traces",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -13,6 +13,7 @@
     "lib",
     "cordis.yml",
     "README.md",
+    "README.zh.md",
     "LICENSE"
   ],
   "scripts": {
@@ -21,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iluluyu/dsh-btw.git"
+    "url": "git+https://github.com/Night-Vision/dsh-btw-desktop.git"
   },
   "dsh": {
     "bundle": {
