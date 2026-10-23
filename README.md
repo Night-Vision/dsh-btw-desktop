@@ -2,7 +2,7 @@
 
 Side questions and temporary chat for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh), adapted for DSH Desktop. Neither enters the main session history.
 
-- **`/btw`**: ask one question while the main task keeps running. The answer sits in a temporary panel above the composer. Esc closes it. The `btw` chip next to Send does the same.
+- **`/btw`**: ask one question while the main task keeps running. The answer sits in a temporary panel above the composer. Esc closes it. The `btw` chip next to Send does the same, and `/btw` is offered in the `/` menu.
 - **Temporary chat**: the entry at the top right of the session. No parent context, working directory is the current project, gone on close.
 
 ## Install
@@ -19,13 +19,14 @@ Use the CLI that ships with the app (`/Applications/DeepSeek Harness.app/Content
 
 ## Status
 
-- Boots on DeepSeek Harness 0.2.1-rc.2. The temp-chat overlay is registered through `slots.inject`; the upstream bare registration fails to boot on this core.
-- `/btw` answers and temporary chat are not yet verified end to end on Desktop.
+- Runs on DeepSeek Harness 0.2.1-rc.2, the core the desktop app ships. The host serves its RPC as exact fetch routes under `/api/btw/*`, because that core allows a single RPC interceptor on `/api` (API Gateway's) and a second one crashes the app at startup. The temp-chat overlay is registered through `slots.inject`.
+- Checked on Desktop: the app starts and `/btw` works. In a test instance, the `/` menu entry and the panel render in English.
+- Not yet verified: Chinese display, and temporary chat replies end to end.
 
 ## Requirements
 
 - A default model selected in DSH settings. Without one, `/btw` and temporary chat report "no default model configured".
-- The interface text is Chinese only.
+- The interface follows the DSH language: English and Chinese are included, any other language falls back to English.
 
 ## License
 
