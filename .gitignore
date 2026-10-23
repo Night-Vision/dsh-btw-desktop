@@ -1,3 +1,4 @@
 node_modules/
 ref/
 .pi/
+.DS_Store
