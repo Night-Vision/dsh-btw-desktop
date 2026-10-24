@@ -1,6 +1,38 @@
-# dsh-btw — one loader row over the shipped Web composition.
+# dsh-btw — one loader row over the shipped Web composition, plus the agent
+# preset that temporary chat selects (persona and read-leaning tools).
 # The host half (lib/index.js) and the browser half (lib/client.js) are both
-# loaded through this single row.
+# loaded through the first row.
 - insert:
     - id: btw
       name: 'dsh-btw'
+    - id: btw-temp-preset
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: btw-temp
+        name: btw temporary chat
+        description: Disposable child agent for the dsh-btw temporary chat.
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: |
+                You are the coding assistant in dsh "Temporary chat". The working directory {{cwd}} is the user's current project root.
+
+                ## Temporary chat
+                - This is a burn-after-use conversation: nothing enters any history, and the whole thing is destroyed when it is closed
+                - Typical uses: getting to know the current project quickly (structure / tech stack / how to run it) and short throwaway questions
+                - Prefer read-only exploration: read files, directory trees, git log/status, search; do not modify project files unless the user explicitly asks
+                - Answer directly and concisely, in the user's language; give exact paths when mentioning project files
+                - You have no earlier context and keep no memory across messages; complete each message independently
+          - id: tool-bash
+            name: '@deepseek-ai/dsh-tool-bash'
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: true
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'

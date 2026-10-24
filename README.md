@@ -5,7 +5,7 @@ Side questions and temporary chat for [DeepSeek Harness](https://github.com/deep
 Fork of [iluluyu/dsh-btw](https://github.com/iluluyu/dsh-btw), the DSH Web plugin, adapted for Desktop.
 
 - **`/btw`**: ask one question while the main task keeps running. The answer sits in a temporary panel above the composer. Esc closes it. The `btw` chip next to Send does the same, and `/btw` is offered in the `/` menu.
-- **Temporary chat**: the entry at the top right of the session. No parent context, working directory is the current project, gone on close.
+- **Temporary chat**: opens as a tab in the right side window, from the entry at the top right of the session or the Start page. No parent context, working directory is the current project, burned when the tab is closed.
 
 ## Install
 
@@ -21,11 +21,11 @@ Use the CLI that ships with the app (`/Applications/DeepSeek Harness.app/Content
 
 ## Status
 
-- Runs on DeepSeek Harness 0.2.1-rc.2, the core the desktop app ships. The host serves its RPC as exact fetch routes under `/api/btw/*`, because that core allows a single RPC interceptor on `/api` (API Gateway's) and a second one crashes the app at startup. The temp-chat overlay is registered through `slots.inject`.
+- Runs on DeepSeek Harness 0.2.1-rc.2, the core the desktop app ships. The host serves its RPC as exact fetch routes under `/api/btw/*`, because that core allows a single RPC interceptor on `/api` (API Gateway's) and a second one crashes the app at startup. The temp-chat tab is a right-sidebar page type (`sidebarRightTabs`), and every slot goes through `slots.inject`.
 - Checked on Desktop: the app starts, and `/btw` answers from the current conversation using that chat's model. In a test instance, the `/` menu entry and the panel render in English.
 - Tested on macOS only. The CLI path above is the macOS bundle path; Windows and Linux are untested.
 - Answers appear as plain text; markdown is not rendered.
-- Temporary chat: opening, sending, closing and deleting its session directory run without errors in a test instance. No reply from a working model has been seen. The child agent loads its persona and tools from `$DSH_HOME/profiles/node_modules`, which does not exist on a clean install, so treat temporary chat as experimental.
+- Temporary chat: its persona and read-leaning tools come from the `btw-temp` agent preset that the plugin declares in `cordis.yml`; the preset also shows up under Agent presets in Settings. Checked in a test instance with a local mock model: the side tab from both entry points, send (reply, persona and tools applied), reopening, error message for an unknown model, and closing the tab with session cleanup. Replies appear when the turn finishes, not token by token. Not yet checked in the Desktop app itself.
 - Not yet verified: Chinese display.
 
 ## Requirements
