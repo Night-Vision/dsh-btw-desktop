@@ -26,12 +26,12 @@ Use the CLI that ships with the app (`/Applications/DeepSeek Harness.app/Content
 - Tested on macOS only. The CLI path above is the macOS bundle path; Windows and Linux are untested.
 - Answers appear as plain text; markdown is not rendered.
 - Temporary chat: its persona and read-leaning tools come from the `btw-temp` agent preset that the plugin declares in `cordis.yml`; the preset also shows up under Agent presets in Settings. Checked in a test instance with a local mock model: the side tab from both entry points, send (reply, persona and tools applied), reopening, error message for an unknown model, and closing the tab with session cleanup. Replies appear when the turn finishes, not token by token. Not yet checked in the Desktop app itself.
-- Not yet verified: Chinese display.
+- Language: checked in a test instance by switching DSH between English and Chinese (the two languages this app ships). The header button, side tab, Start-page card and `/btw` panel follow the switch without a reload. The `/` menu entry was not checked in Chinese.
 
 ## Requirements
 
 - A model: `/btw` and temporary chat use the model selected in the current chat. If the chat has none, they use the default model from DSH settings, and report "no default model configured" when there is neither.
-- The interface follows the DSH language: English and Chinese are included, any other language falls back to English.
+- The interface follows the DSH language (Settings, General, Language). The plugin includes English and Chinese, the two languages this DSH ships; any other language falls back to English.
 
 ## License
 
